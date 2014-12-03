@@ -7,7 +7,7 @@
 ####Configuration
 1. Go
     - go compiler required [golang.org](www.golang.org)
-    - ```go run main.go```
+    - ```go run parse-pcuz.go```
 
 2. JavaScript
     - nodejs required [nodejs.org](www.nodejs.org)
