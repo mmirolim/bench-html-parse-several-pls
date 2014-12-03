@@ -25,8 +25,6 @@ foreach($html->find('table a[style="font-size:11pt; text-decoration:none;"] stro
 foreach($html->find('td.line_about') as $div) {
     array_push($tels, $div->find('div[style="padding-bottom:1px"] span', 0)->innertext);
 }
-// create std obj to serialize it
-$org = new stdClass();
 // zip names with tels
 foreach($names as $k => $name) {
     $orgs[] = array("name"=> $name, "tel" => $tels[$k]);
