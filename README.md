@@ -17,7 +17,7 @@
 
 3. PHP
     - PHP-FPM
-    - "simple_html_dom.php" parse library used and included
+    - "simple_html_dom.php" parse library used [simplehtmldom.sourceforge.net](http://simplehtmldom.sourceforge.net/)
     - ```php parse-pcuz.php```
 
 4. Scala
