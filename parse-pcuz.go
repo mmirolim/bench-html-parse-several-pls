@@ -46,42 +46,40 @@ func main() {
 		Val:  "98%",
 	}
 
-	tables := findNodes(d, slTable)
-	// @todo should be more flexible
-	if len(tables) != 2 {
-		log.Fatalln("html structure changed, can't find required file", len(tables))
-	}
 	// get required table node to process
-	tbl := tables[1]
+	tbl := findNodes(d, slTable)[1]
 	// find org titles
 	slT := selector{
 		Tag: atom.Strong,
 	}
-	elmsT := findNodes(tbl, slT)
-	for _, v := range elmsT {
+
+	// find all names
+	for _, v := range findNodes(tbl, slT) {
 		orgs = append(orgs, Org{Name: getText(v)})
 	}
+
 	// select about td nodes
 	sls := selector{
 		Tag:  atom.Td,
 		Attr: "class",
 		Val:  "line_about",
 	}
-	elms := findNodes(tbl, sls)
+
 	// about elms
 	slD := selector{
 		Tag:  atom.Div,
 		Attr: "style",
 		Val:  "padding-bottom:1px",
 	}
-
-	for k, v := range elms {
-		divs := findNodes(v, slD)
-		orgs[k].Tel = getPhone(divs[0])
+	// find all phones
+	for k, v := range findNodes(tbl, sls) {
+		orgs[k].Tel = getPhone(findNodes(v, slD)[0])
 	}
 
+	// json serialize find orgs
 	b, err := json.Marshal(orgs)
 	fatalOnErr(err)
+
 	// create file
 	cn := strings.Split(url, "/")
 	fname := "pcuz-cat-parse-" + cn[len(cn)-1] + ".json"
