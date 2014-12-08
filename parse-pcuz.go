@@ -76,7 +76,7 @@ func main() {
 		orgs[k].Tel = getPhone(findNodes(v, slD)[0])
 	}
 
-	// json serialize find orgs
+	// json serialize found orgs
 	b, err := json.Marshal(orgs)
 	fatalOnErr(err)
 
