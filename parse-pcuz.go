@@ -74,12 +74,10 @@ func main() {
 		Attr: "style",
 		Val:  "padding-bottom:1px",
 	}
-	var o Org
+
 	for k, v := range elms {
 		divs := findNodes(v, slD)
-		o = orgs[k]
-		o.Tel = getPhone(divs[0])
-		orgs[k] = o
+		orgs[k].Tel = getPhone(divs[0])
 	}
 
 	b, err := json.Marshal(orgs)
